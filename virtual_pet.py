@@ -8,9 +8,10 @@ class VirtualPet:
         self.hunger = 5
         self.energy = 5
         self.thirst = 5
+        self.dirty = 5
         
     #method
-    def talk(self):
+    def born(self):
         print("Hi, I'm your virtual pet!")
 
     def feed(self, food):
@@ -19,15 +20,29 @@ class VirtualPet:
 
     def drink(self):
         self.thrist = self.thirst - 1
-        # slef.energy = self.energy + 
+        # self.energy = self.energy + 1
 
-def main():
+    def wash(self):
+        self.was = self.wash - 1
+
+def welcome():
+    print('========== Hello, welcome to the virtual pet game ==========')
+    print('')
     name = input("Please enter a name for your pet: ")
     pet_one = VirtualPet(name) #creates and instance from the class
-    pet_one.talk() #calls talk method
-    print(pet_one.energy)
+    pet_one.born() #calls talk method
+    return pet_one
+
+def menu():
+    print('===== MENU =====')
+    print('')
+    print('')
+
+def main():
+    pet_one = welcome()
+    print("my energy is {0}".format(pet_one.energy))
     pet_one.feed("Cake")
-    print(pet_one.energy)
+    print("My energy is now {0}".format(pet_one.energy))
 
 if __name__ == "__main__":
     main()
