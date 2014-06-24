@@ -15,7 +15,7 @@ class RadioButtonWidget(QWidget):
         #create the radio buttons
         self.radio_button_list = []
         for each in button_list:
-            sefl.radio_button_list.append(QRadioButton(each))
+            self.radio_button_list.append(QRadioButton(each))
 
         #set the default checked item
         self.radio_button_list[0].setChecked(True)
@@ -30,3 +30,19 @@ class RadioButtonWidget(QWidget):
             self.radio_button_group.addButton(each)
             self.radio_button_group.setId(each, counter)
             counter +=1
+
+        #add radio buttons to the group box
+        self.radio_group_button.setLayout(self.radio_button_layout)
+
+        #create a layout for whole widget
+        self.main_layout = QVBoxLayout()
+        self.main_layout.addWidget(self.title_label)
+        self.main_layout.addWidget(self.radio_group_box)
+
+        #set the layout for this widget
+        self.stLayout(self.main_layout)
+
+    #method to find out the selected button
+
+    def selected_button(self):
+        return self.radio_button_group.checkedId()
