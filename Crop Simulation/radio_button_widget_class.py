@@ -25,22 +25,22 @@ class RadioButtonWidget(QWidget):
 
         #add buttons to the layout group
         counter = 1
-        for each in radio_button_list:
+        for each in self.radio_button_list:
             self.radio_button_layout.addWidget(each)
             self.radio_button_group.addButton(each)
             self.radio_button_group.setId(each, counter)
             counter +=1
 
         #add radio buttons to the group box
-        self.radio_group_button.setLayout(self.radio_button_layout)
+        self.radio_group_box.setLayout(self.radio_button_layout)
 
         #create a layout for whole widget
         self.main_layout = QVBoxLayout()
-        self.main_layout.addWidget(self.title_label)
+        self.main_layout.addWidget(self.title_lable)
         self.main_layout.addWidget(self.radio_group_box)
 
         #set the layout for this widget
-        self.stLayout(self.main_layout)
+        self.setLayout(self.main_layout)
 
     #method to find out the selected button
 
