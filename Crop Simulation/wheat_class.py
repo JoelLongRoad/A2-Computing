@@ -17,6 +17,8 @@ class Wheat(Crop):
                 self._growth += (self._growth_rate * 1.5)
             elif self._status == "Young" and water > self._water_need:
                 self._growth += (self._growth_rate * 1.25)
+            elif self._status == "old" and water > self._water_need:
+                self.growth += (self._growth_rate / 2)
             else:
                 self._growth += self._growth_rate
         #increment the days growing
