@@ -10,14 +10,14 @@ class ManualGrowDialog(QDialog):
         self.water_spinbox = QSpinBox()
         self.light_spinbox = QSpinBox()
 
-        self.water_spinbox.setRange(1,10)
-        self.water_spinbox.setRange(1,10)
+        self.water_spinbox.setRange(0,10)
+        self.light_spinbox.setRange(0,10)
 
         self.water_spinbox.setSuffix(" Water")
         self.light_spinbox.setSuffix(" Light")
         
-        self.water_spinbox.setValue(1)
-        self.light_spinbox.setValue(1)
+        self.water_spinbox.setValue(0)
+        self.light_spinbox.setValue(0)
 
         self.submit_button = QPushButton("Enter Values")
 
@@ -28,8 +28,9 @@ class ManualGrowDialog(QDialog):
 
         self.setLayout(self.dialog_layout)
 
-        #connaction
+        #connection
         self.submit_button.clicked.connect(self.close)
+
 
     def values(self):
         return int(self.light_spinbox.value()), int(self.water_spinbox.value())

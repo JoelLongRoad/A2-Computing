@@ -6,6 +6,7 @@ from PyQt4.QtGui import *
 
 from radio_button_widget_class import * #provides the radio button widget
 from manual_grow_dialog_class import * #provides the manual grow dialog window
+from auto_grow_dialog_class import *
 from crop_view_class import *
 
 from wheat_class import *
@@ -72,7 +73,7 @@ class CropWindow(QMainWindow):
         self.crop_view.setFixedWidth(242)
 
         self.manual_grow_button = QPushButton("Manually Grow")
-        self.auto_grow_button = QPushButton("Automatically Grow (10 Days)")
+        self.auto_grow_button = QPushButton("Automatically Grow")
 
         self.grow_grid = QGridLayout()
         self.status_grid = QGridLayout()
@@ -119,7 +120,10 @@ class CropWindow(QMainWindow):
         
         
     def auto_grow_crop(self):
-        for days in range(10):
+        days_values_dialog = AutoGrowDialog()
+        days_values_dialog.exec_()
+        days = days_values_dialog.values()
+        for day in range(days):
             light = random.randint(1,10)
             water = random.randint(1,10)
             self.simulated_crop.grow(light,water)
@@ -130,7 +134,10 @@ class CropWindow(QMainWindow):
         manual_values_dialog.exec_() #run the dialog window
         light, water = manual_values_dialog.values()
         self.simulated_crop.grow(light,water)
-        self.update_crop_view_status()
+        if light == 0 and water == 0:
+            self.simulated_crop._days_growing -= 1
+        else:
+            self.update_crop_view_status()
         
     def update_crop_view_status(self):
         crop_status_report = self.simulated_crop.report()#get crop report
@@ -141,7 +148,7 @@ class CropWindow(QMainWindow):
         self.status_line_edit.setText(str(crop_status_report["status"]))#update status field
 
         if crop_status_report["status"] == "Seed":
-            sef.crop_view.switch_scene(0)
+            self.crop_view.switch_scene(0)
         elif crop_status_report["status"] == "Seedling":
             self.crop_view.switch_scene(1)
         elif crop_status_report["status"] == "Young":
