@@ -27,12 +27,14 @@ class Animal:
     return {"type":self._type,"status":self._status,"name":self._name,"weight":self._weight,"days growing":self._days_growing}
 
   def _update_status(self):
-    elif self._weight > 30:
-      self._status = "Prime"
-    elif self._weight > 15:
-      self._status = "Fine"
+    if self._weight > 15:
+      self._status = "Old"
     elif self._weight > 10:
-      self._status = "Poor"
+      self._status = "Mature"
+    elif self._weight > 5:
+      self._status = "Teen"
+    elif self._weight > 0:
+      self._status = "Young"
     elif self._weight == 0:
       self._status = "Baby"
 
