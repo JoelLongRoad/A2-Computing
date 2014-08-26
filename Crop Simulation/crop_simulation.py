@@ -32,6 +32,9 @@ class CropWindow(QMainWindow):
         #create the central widget to hold the layouts 
         self.setCentralWidget(self.central_widget)
 
+        #close window keyboard shortcut
+        QShortcut(QKeySequence("Ctrl+W"), self, self.close)
+
 
     def create_select_crop_layout(self):
         #this is the initial layout of the window - to select the crop type
