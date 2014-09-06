@@ -1,48 +1,31 @@
 from animal_class import *
 
 class Cow(Animal):
-    """A generic Sheep"""
+    """A simulation of a Cow"""
 
     #constructor
     def __init__(self,name):
-        #call parent class constructor with default values for potato
-        #growth rate = 1; food need = 3; water need = 6
-        super().__init__(name,1,3,6)
-        self._type = "Cow"
+        #call the parent class constructor with default values for Cow
+        #growth rate = 2; food need = 5, water need = 4
+        super().__init__(2,5,4,name)
+        self._type = "Cow" #override the parent class attribute with new value
 
-    #overriding grow method for subclass
+    #override the grow method from the parent class
     def grow(self,food,water):
-        if  food >= self._food_need and water >= self._water_need:
-            if self._status == "Young" and water > self._water_need:
-                self._weight += self._growth_rate * 1.5
-            elif self._status == "Calf" and water > self._water_need:
-                self._weight += self._growth_rate * 1.25
-            else:
-                self._weight = self._growth_rate
-        #increment the days growing
+        if food > self._food_need:
+            self._weight += self._growth_rate * 1.1
+        elif food == self._food_need and water >= self._water_need:
+            self._weight += self._growth_rate
+        #increment days growing
         self._days_growing += 1
-        #update status
+        #update the status
         self._update_status()
 
-def get_name():
-    valid = False
-    while not valid:
-        name = input("Please enter a name for the cow: ")
-        if len(name) > 0:
-            valid = True
-        else:
-            print("Error! You need to enter a name for the cow")
-    return name
-
 def main():
-    name = get_name()
-    #create a new cow animal
-    new_cow = Cow(name)
-    #manually grow the animal
-    manual_grow(new_cow)
-    print(new_cow.report())
-    manual_grow(new_cow)
-    print(new_cow.report())
+    #instaniate the class
+    new_cow = Cow("Jim")
+    #test to see whether it works or not
+    manage_animal(new_cow)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
