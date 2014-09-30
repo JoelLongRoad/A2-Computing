@@ -37,10 +37,10 @@ def create_customer_table():
              (CustomerID integer
              FirstName text,
              LastName text,
-             Street,
-             Town,
-             PostCode,
-             EmailAddress,
+             AddressLine1 text
+             Town text,
+             PostCode text ,
+             EmailAddress text,
              primary key(CustomerID)
              )"""
     create_table(db_name, "Customer", sql)
