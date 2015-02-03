@@ -1,4 +1,5 @@
 from PyQt4.QtGui import *
+import sys
 
 class RadioButtonWidget(QWidget):
     """this class creates a group of radio buttond from a given list of labels"""
@@ -46,3 +47,13 @@ class RadioButtonWidget(QWidget):
 
     def selected_button(self):
         return self.radio_button_group.checkedId()
+
+def main_menu_main():
+    application = QApplication(sys.argv)
+    window = RadioButtonWidget()
+    window.show()
+    window.raise_()
+    application.exec_()
+
+if __name__ == "__main__":
+    main_menu_main()
